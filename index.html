@@ -3,116 +3,469 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oaklyn Capital Properties - Premier Real Estate Solutions</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="description" content="Oakly Capital Properties offers elite real estate solutions in luxury home sales, investments, and renovations.">
+    <meta name="keywords" content="luxury real estate, property investment, renovations, Oakly Capital Properties, Dustin Lockwood">
+    <meta name="author" content="Oakly Capital Properties">
+    <title>Oakly Capital Properties - Elite Real Estate</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: #f9fafb;
+            color: #1a202c;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        header {
+            background: linear-gradient(90deg, #1e3a8a, #2b6cb0);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 12px 0;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .logo p {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #facc15;
+            transform: translateY(-1px);
+        }
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+        }
+        .menu-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+        .mobile-menu {
+            display: none;
+            background: #1e3a8a;
+            padding: 8px 16px;
+        }
+        .mobile-menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 0;
+            transition: background 0.2s ease;
+        }
+        .mobile-menu a:hover {
+            background: #2b6cb0;
         }
         .hero {
-            background: url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2') no-repeat center;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c') no-repeat center;
             background-size: cover;
+            height: 55vh;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+        .hero-content {
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .hero p {
+            font-size: 14px;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, #facc15, #f59e0b);
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 12px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        section {
+            padding: 32px 0;
+        }
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 16px;
         }
         .founder-img {
-            max-width: 250px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
-            margin: 1.5rem auto;
+            object-fit: cover;
+            margin: 8px auto;
             display: block;
+            transition: opacity 0.3s ease;
+            border: 2px solid #facc15;
         }
         .portfolio-img {
-            max-width: 100%;
-            height: 200px;
+            width: 100%;
+            height: 100px;
             object-fit: cover;
-            border-radius: 8px;
-            margin: 1rem 0;
+            border-radius: 4px;
+            margin: 4px 0;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .portfolio-img:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .card {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-2px);
+        }
+        .card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #4b5563;
+        }
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d1d3d7;
+            border-radius: 3px;
+            font-size: 14px;
+            margin-bottom: 8px;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #1e3a8a;
+            outline: none;
         }
         .testimonial {
-            background: #f9fafb;
-            padding: 1.5rem;
+            background: #f3f4f6;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 2px solid #facc15;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            text-align: center;
+        }
+        .stats-item {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1e3a8a;
+        }
+        .stats-item p {
+            font-size: 14px;
+            color: #555;
+        }
+        .lightbox {
+            max-width: 90vw;
+            max-height: 90vh;
             border-radius: 8px;
-            margin: 1rem 0;
+        }
+        footer {
+            color: white;
+            background: #333;
+            padding: 16px;
+            text-align: center;
+            font-size: 14px;
         }
         footer a {
-            color: #bfdbfe;
-            text-decoration: none;
+            color: white;
+            text-decoration: underline;
+            transition: opacity 0.2s;
         }
         footer a:hover {
-            text-decoration: underline;
+            opacity: 0.8;
+        }
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            .menu-toggle {
+                display: inline-block;
+            }
+            .mobile-menu.active {
+                display: block;
+            }
+            .hero {
+                height: 60vh;
+            }
+            .hero h2 {
+                font-size: 24px;
+            }
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .founder-img {
+                width: 120px;
+                height: 120px;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100">
-    <header class="bg-blue-900 text-white py-6">
-        <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl font-bold">Oaklyn Capital Properties</h1>
-            <p class="mt-2 text-lg">Your Trusted Partner in Luxury Real Estate</p>
+<body>
+    <header class="lightning">
+        <div class="container header-content">
+            <div class="logo">
+                <h1>Oakly Capital Properties</h1>
+                <p>Elite Real Estate Solutions</p>
+            </div>
+            <nav>
+                <a href="#home-sales">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#team">Team</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="menu-toggle">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#home-sales">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#team">Team</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
         </div>
     </header>
-    <nav class="bg-gray-200 py-4">
-        <div class="container mx-auto px-4 flex justify-center space-x-6">
-            <a href="#home" class="text-blue-900 font-semibold hover:text-blue-600">Home</a>
-            <a href="#about" class="text-blue-900 font-semibold hover:text-blue-600">About</a>
-            <a href="#services" class="text-blue-900 font-semibold hover:text-blue-600">Services</a>
-            <a href="#portfolio" class="text-blue-900 font-semibold hover:text-blue-600">Portfolio</a>
-            <a href="#testimonials" class="text-blue-900 font-semibold hover:text-blue-600">Testimonials</a>
-            <a href="#contact" class="text-blue-900 font-semibold hover:text-blue-600">Contact</a>
-        </div>
-    </nav>
-    <section class="hero py-16 text-center" id="home">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-4">Elevate Your Real Estate Journey</h2>
-            <p class="text-lg max-w-2xl mx-auto">Oaklyn Capital Properties specializes in luxury home sales, property investments, and seamless renovations, delivering exceptional results for our clients.</p>
+    <section class="hero" id="home-sales">
+        <div class="hero-content container">
+            <h2>Redefining Luxury Real Estate</h2>
+            <p>Oakly Capital Properties delivers elite home sales, investments, and renovations with unmatched expertise.</p>
+            <a href="#contact" class="cta-button">Connect Now</a>
         </div>
     </section>
-    <section class="container mx-auto px-4 py-12" id="about">
-        <h2 class="text-2xl font-bold text-center mb-6">About Our Founder</h2>
+    <section class="container" id="about">
+        <h2>Meet Dustin Lockwood</h2>
         <div class="flex flex-col md:flex-row items-center">
-            <img src="https://i.imgur.com/QiEYwDg.jpeg" alt="James Carter" class="founder-img">
-            <div class="md:ml-6 text-center md:text-left">
-                <p class="text-lg">Dustin Lockwood founded Oaklyn Capital Properties with a vision to redefine luxury real estate. With over 15 years of experience, Dustin has built a reputation for closing high-value deals and transforming properties across the country. His demanding schedule takes him from client negotiations to site visits, but he remains committed to fostering trust and integrity in every partnership. Outside of work, Dustin enjoys exploring new cities, fine dining, and rewarding his dedicated team with thoughtful gestures, such as gift cards to their favorite retailers. His approach to business and relationships is built on transparency, ensuring every transaction is secure and reliable.</p>
+            <img src="https://i.imgur.com/QiEYwDg.jpeg" alt="Dustin Lockwood" class="founder-img" loading="lazy">
+            <div class="md:ml-4 text-center md:text-left">
+                <p class="text-xs">Dustin Lockwood, 44, founded Oakly Capital Properties. Divorced and ambitious, he’s mastered luxury real estate over 15 years, excelling in high-end sales and renovations. Despite a busy schedule, Dustin prioritizes trust, gifting his team retailer gift cards. He enjoys fine dining and travel. Secure mailed checks keep his deals seamless. See more at <a href="oaklycapitalproperties.co" class="text-blue-600 hover:underline">oaklycapitalproperties.co</a>.</p>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-4 py-12" id="services">
-        <h2 class="text-2xl font-bold text-center mb-6">Our Services</h2>
-        <p class="text-lg max-w-3xl mx-auto">Oaklyn Capital Properties offers comprehensive real estate solutions, including luxury home sales, property acquisitions, and professional renovations. We prioritize secure payment methods, such as mailed checks, to ensure smooth and confidential transactions for our clients and partners. Our rewards program, featuring gift cards, celebrates the hard work of our contractors and investors, fostering long-term collaboration.</p>
-    </section>
-    <section class="container mx-auto px-4 py-12" id="portfolio">
-        <h2 class="text-2xl font-bold text-center mb-6">Our Portfolio</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Property 1" class="portfolio-img">
-                <p class="text-center">Luxury Coastal Villa</p>
+    <section class="container bg-white" id="services">
+        <h2>Our Expertise</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Luxury Home Sales</h3>
+                <p>Seamless sales with secure mailed checks for privacy.</p>
             </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c" alt="Property 2" class="portfolio-img">
-                <p class="text-center">Modern Urban Loft</p>
+            <div class="card">
+                <h3>Property Investments</h3>
+                <p>Smart acquisitions for maximum growth.</p>
             </div>
-            <div>
-                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea" alt="Property 3" class="portfolio-img">
-                <p class="text-center">Renovated Suburban Estate</p>
+            <div class="card">
+                <h3>Renovations</h3>
+                <p>Expert transformations with our rewards program.</p>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-4 py-12" id="testimonials">
-        <h2 class="text-2xl font-bold text-center mb-6">Client Testimonials</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <section class="container" id="portfolio">
+        <h2>Our Portfolio</h2>
+        <div class="grid">
+            <div>
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Property 1" class="portfolio-img" loading="lazy">
+                <p class="text-center text-xs">Coastal Villa</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c" alt="Property 2" class="portfolio-img" loading="lazy">
+                <p class="text-center text-xs">Urban Loft</p>
+            </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea" alt="Property 3" class="portfolio-img" loading="lazy">
+                <p class="text-center text-xs">Suburban Estate</p>
+            </div>
+        </div>
+        <div id="lightbox" class="lightbox">
+            <img id="lightbox-img" src="" alt="Portfolio Image">
+        </div>
+    </section>
+    <section class="container bg-white" id="team">
+        <h2>Our Team</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Team Member 1" class="founder-img" loading="lazy">
+                <h3>Emily Stone</h3>
+                <p>Property Manager</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Team Member 2" class="founder-img" loading="lazy">
+                <h3>Michael Reed</h3>
+                <p>Investment Consultant</p>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Team Member 3" class="founder-img" loading="lazy">
+                <h3>Sarah Lin</h3>
+                <p>Renovation Specialist</p>
+            </div>
+        </div>
+    </section>
+    <section class="container" id="testimonials">
+        <h2>What Clients Say</h2>
+        <div class="grid">
             <div class="testimonial">
-                <p>"Working with Oaklyn Capital Properties was seamless. Dustin and his team handled my home sale with professionalism and efficiency, using secure payment methods that gave me peace of mind." – Sarah M.</p>
+                <p>"Dustin’s team made my sale effortless with secure mailed checks." – Laura K.</p>
             </div>
             <div class="testimonial">
-                <p>"Dustin Lockwood’s expertise in real estate is unmatched. His personalized approach and rewards program made our renovation project a success!" – Michael T.</p>
+                <p>"The rewards program and Dustin’s expertise turned our investment into gold." – David R.</p>
             </div>
         </div>
     </section>
-    <section class="container mx-auto px-4 py-12" id="contact">
-        <h2 class="text-2xl font-bold text-center mb-6">Contact Us</h2>
-        <p class="text-lg text-center">Interested in partnering with Oaklyn Capital Properties? Reach out to discuss your real estate goals: <a href="mailto:info@summitproperties.co" class="text-blue-600 hover:underline">info@oaklyncapitalproperties.co</a></p>
+    <section class="container bg-white" id="contact">
+        <h2>Get in Touch</h2>
+        <p class="text-xs text-center mb-8">Unlock elite real estate with Oakly Capital Properties.</p>
+        <div class="max-w-xs mx-auto">
+            <form>
+                <input type="text" placeholder="Name" class="form-input">
+                <input type="email" placeholder="Email" class="form-input">
+                <textarea placeholder="Your Message" class="form-input" style="height: 80px;"></textarea>
+                <button type="submit" class="cta-button w-full">Send Message</button>
+            </form>
+        </div>
+        <p class="text-xs text-center mt-8">Or email: <a href="mailto:info@oaklycapitalproperties.co" class="text-blue-600 hover:underline">info@oaklycapitalproperties.co</a></p>
     </section>
-    <footer class="bg-blue-900 text-white py-6 text-center">
-        <p>© 2025 Oaklyn Capital Properties. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+    <section class="container bg-gray-50">
+        <h2>Our Impact</h2>
+        <div class="stats-grid">
+            <div class="stats-item">250+<p>Deals Closed</p></div>
+            <div class="stats-item">100%<p>Client Satisfaction</p></div>
+            <div class="stats-item">15<p>Years of Excellence</p></div>
+        </div>
+    </section>
+    <footer>
+        <p>© 2025 Oakly Capital Properties. All rights reserved. | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms of Service</a></p>
+        <p class="mt-4">Follow us: <a href="#">LinkedIn</a> | <a href="#">Twitter</a></p>
     </footer>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('active');
+        });
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        // Lightbox for portfolio images
+        const portfolioImgs = document.querySelectorAll('.portfolio-img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        portfolioImgs.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+        lightbox.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+        // Fake stats counter
+        const counters = document.querySelectorAll('.stats-item');
+        counters.forEach(counter => {
+            let count = 0;
+            const target = parseInt(counter.textContent.replace('+', '')) || 100;
+            const increment = target / 50;
+            const updateCount = () => {
+                count += increment;
+                if (count < target) {
+                    counter.firstChild.textContent = Math.ceil(count) + (counter.textContent.includes('+') ? '+' : '');
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.firstChild.textContent = counter.textContent.includes('+') ? target + '+' : target;
+                }
+            };
+            updateCount();
+        });
+    </script>
 </body>
 </html>
